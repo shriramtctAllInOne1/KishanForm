@@ -1,0 +1,20 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
+    xmlns:spring="http://www.springframework.org/tags"
+     xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+  <jsp:output omit-xml-declaration="yes" />
+  
+  <jsp:directive.attribute name="captionKey" type="java.lang.String" required="false" rtexprvalue="true" description="The caption given before the buttons" />
+  <jsp:directive.attribute name="begin" type="java.lang.Integer" required="true" rtexprvalue="true" description="The starting number" />
+  <jsp:directive.attribute name="end" type="java.lang.Integer" required="true" rtexprvalue="true" description="The ending number" />
+  <jsp:directive.attribute name="linkUrl" type="java.lang.String" required="true" rtexprvalue="true" description="The URL prefix for the links" />
+  <h4>  
+    <c:if test="${not empty captionKey }">
+	   <spring:message code="${captionKey}" />
+	</c:if>
+	<c:forEach begin="${begin }" end="${end}" var="i">
+		<a class="button" href="${linkUrl }?page=${i}">${i }</a>
+	</c:forEach>
+    <jsp:doBody />
+ </h4>
+</jsp:root>
